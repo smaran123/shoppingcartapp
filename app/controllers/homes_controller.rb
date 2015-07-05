@@ -1,12 +1,22 @@
 class HomesController < ApplicationController
   def index
- # @category = Category.find(params[:id])
- #    @products = @category.products
-  @categories = Category.all
+   @categories = []
+   # @categories = Category.all
   end
 
    def show
    @category = Category.find(params[:id])
    @products = @category.products
  end
+
+def category
+	 @categories = Category.where("id = '#{params[:category_id]}'")
+
+    respond_to do |format|
+          format.js
+      end
+
 end
+
+end
+

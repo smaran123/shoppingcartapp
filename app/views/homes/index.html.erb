@@ -4,13 +4,39 @@
 <!--%end%-->
 
 
-<% @categories.where("name is not null" ).each do |cat| %>
+<!--% @categories.where("name is not null" ).each do |cat| %-->
+<!--%= link_to cat.name, home_path(cat) %--><br/>
+<!--% cat.products.each do |p|%-->
+<!--%= p.name %-->
+<!--%= p.price%-->
+<!--%= p.description %--><br/>
+<!--%end%-->
+<!--% end %-->
 
-	<%= link_to cat.name, cat %><br/>
-	<% cat.products.each do |p|%>
-	<%= p.name %>
-<%= p.price%>
-<%= p.description %><br/>
+
+<%=form_tag root_path do%>
+
+<%=select_tag :category,options_for_select([["select", ""]]+Category.all.map{|i|[i.name,i.id]}), :onchange => "category1(this.value)" %>
 <%end%>
 
-	<% end %>
+<div id="category1">
+<%= render :partial => "category" %>
+</div>
+
+
+
+<script>
+  function category1(val){
+  var category = val;
+ 
+  $.ajax({
+    type: 'GET',
+    url: '/homes/category',
+    dataType: 'Script',
+    data: {
+      category_id: category
+    },
+    success: function(data) {},
+  });
+  }
+</script>
