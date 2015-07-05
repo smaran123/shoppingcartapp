@@ -1,0 +1,29 @@
+<%= form_for @category do |f| %>
+<% if @category.errors.any? %>
+  <div class="da-panel-content">
+    <div class="da-message warning">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="da-form-row">
+  <label><%= f.label :Category_Name %></label>
+  <div class="da-form-item large">
+    <%= f.text_field :name, autofocus: true, class: "form-control", placeholder:"Category Name"%>
+    </div>
+  </div>
+
+  <div class="da-button-row">
+    <%= f.submit class: "da-button blue left" %>
+  </div>
+
+  <%end%>
+
+  <%= link_to "Back", categories_path %>

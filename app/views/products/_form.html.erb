@@ -1,0 +1,51 @@
+<%= form_for @product do |f| %>
+
+<% if @product.errors.any? %>
+  <div class="da-panel-content">
+    <div class="da-message warning">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="da-form-row">
+  <label>Choose Category</label>
+  <div class="da-form-item large">
+    <%= f.select :category_id, options_for_select([["Select Category", ""]] + Category.all.map {|c| [c.name, c.id]},:selected => f.object.category_id), {}, :id => "category_id" %>
+  </div>
+</div>
+
+
+<div class="da-form-row">
+  <label><%= f.label :product_Name %></label>
+  <div class="da-form-item large">
+    <%= f.text_field :name, class: "form-control", placeholder:"Product Name"%>
+    </div>
+  </div>
+
+
+  <div class="da-form-row">
+    <label><%= f.label :Description %></label>
+    <div class="da-form-item large">
+      <%= f.text_area :description,rows: 6, column: 5, class: "form-control ckeditor", placeholder: "Description", :id => "da-ex-elastic" %>
+      </div>
+    </div>
+
+    <div class="da-form-row">
+      <label><%= f.label :price %></label>
+      <div class="da-form-item large">
+        <%= f.text_field :price , class: "form-control", placeholder: "price" %>
+        </div>
+      </div>
+
+               
+            <div class="da-button-row">
+              <%= f.submit class: "da-button blue left" %>
+              </div>
+<%end%>

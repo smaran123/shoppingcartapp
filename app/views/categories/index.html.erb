@@ -1,0 +1,19 @@
+<table>
+<tr>
+<th>CategoryName</th>
+<th></th>
+</tr>
+
+<% @categories.each do |category| %>
+<tr>
+<td><%= category.name %></td>
+<td><%= link_to "Show", category_path(category), :class => "btn btn-info" %>
+<%= link_to "Edit", edit_category_path(category), :class => "btn btn-info" %>
+<%= link_to "Delete", category_path(category),  :method => "delete",:data => {:confirm => "are you sure?"}, :class => "btn btn-danger"%>
+</td>
+<br/>
+<%end%>
+</tr>
+<br/>
+
+<%= link_to "Back", new_category_path %>

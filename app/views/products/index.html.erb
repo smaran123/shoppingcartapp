@@ -1,0 +1,31 @@
+<table>
+<tr>
+<th>ProductName</th>
+<th>Description</th>
+<th>Price</th>
+<th>CategoryName</th>
+<th></th>
+
+
+</tr>
+
+
+
+<% @products.each do |product| %>
+<tr>
+<td><%= product.name %></td>
+<td><%= product.description %></td>
+<td><%= product.price %></td>
+<td><%= product.category.name %></td>
+<td>
+<%= link_to "Show", category_path(product), :class => "btn btn-info" %>
+<%= link_to "Edit", edit_category_path(product), :class => "btn btn-info" %>
+<%= link_to "Delete", category_path(product),  :method => "delete",:data => {:confirm => "are you sure?"}, :class => "btn btn-danger"%>
+</td>
+<br/>
+</tr>
+<%end%>
+<br/>
+</table>
+
+<%= link_to "Back", new_category_path %>

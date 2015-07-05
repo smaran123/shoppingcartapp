@@ -1,0 +1,24 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: shoppingcartapp_development
+
+
+test:
+  <<: *default
+  database: shoppingcartapp_test
+
+
+production:
+  <<: *default
+  database: shoppingcartapp_production
+  username: shoppingcartapp
+  password: <%= ENV['SHOPPINGCARTAPP_DATABASE_PASSWORD'] %>
